@@ -1,77 +1,79 @@
-<!--
-  Creative Developer profile README
-  Branch: profile/creative-developer-makeover
--->
+# For Williams ♥
 
-<div align="center">
+A cozy, single-page site for sharing memories, songs, and little reasons with someone special.  
+Built as a pure static HTML/CSS/JS page (no build step required).
 
-<img src="https://raw.githubusercontent.com/aethertimi-ctrl/aethertimi-ctrl/profile/creative-developer-makeover/assets/creative-banner.svg" alt="Aether Timi — Creative Developer" width="100%" />
+## Features
 
-# Hey, I'm Timi 👋
+- Day / night theme (saved in the browser)
+- Typed intro message
+- Live “time together” counter (optional)
+- Flip cards with personal reasons
+- Photo gallery, audio player (with vinyl animation), and video section
+- Particle / heart effects
+- Optional uploader (`?edit`) that can push files directly into the GitHub repo
+- Works on GitHub Pages and Netlify
 
-### Creative Developer · Web Experiences · Digital Design
+## Quick start
 
-I turn ideas into engaging digital experiences — from event and celebration websites to expressive landing pages and reusable web templates.
+1. Clone or download the repo.
+2. Open `index.html` in a browser (or deploy it).
+3. Put your photos, songs, and videos inside the `media/` folder.
 
-[![GitHub](https://img.shields.io/badge/GitHub-aethertimi--ctrl-181717?style=for-the-badge&logo=github)](https://github.com/aethertimi-ctrl)
-[![X](https://img.shields.io/badge/Follow-%40AetherTimi-000000?style=for-the-badge&logo=x)](https://x.com/AetherTimi)
-[![Email](https://img.shields.io/badge/Email-Let's%20talk-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:aethertimi@gmail.com)
+Supported types:
+- Images: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.avif`, `.svg`
+- Audio: `.mp3`, `.m4a`, `.wav`, `.ogg`, `.aac`, `.flac`
+- Video: `.mp4`, `.webm`, `.m4v`, `.mov`
 
-</div>
+## Customization
 
----
+Open `index.html` and edit the block marked `// EDIT ME` (around line 615):
 
-## ✦ What I create
+| Variable     | Purpose                                      | Example                          |
+|--------------|----------------------------------------------|----------------------------------|
+| `NAME`       | Name shown in the title and throughout the page | `"Williams"`                    |
+| `START_DATE` | Start of the relationship (for the counter). Leave `""` to hide it. | `"2024-06-15"` or `""`         |
+| `MEDIA_DIR`  | Folder that holds the media files            | `"media"`                        |
+| `REPO`       | Required when hosting outside GitHub Pages (e.g. Netlify) so the page can list files | `{ owner: "aethertimi-ctrl", repo: "dami-repo", branch: "main" }` |
+| `INTRO`      | Message that types out at the top            | Custom string                    |
+| `REASONS`    | Array of texts for the flip cards            | Add/remove/edit strings          |
+| `LOVE_LINES` | Messages shown when the “Send a little love” button is clicked | Array of strings              |
 
-- **Interactive websites** — memorable digital experiences with thoughtful details.
-- **Event & celebration pages** — websites for birthdays, weddings, proposals and live events.
-- **Landing pages** — responsive pages that communicate clearly and look polished.
-- **Reusable templates** — flexible starting points that make launching new ideas easier.
+## Deploying
 
-## 🧰 Tools I work with
+### GitHub Pages
+Just enable Pages in the repo settings (branch `main`, root).  
+The page automatically detects the GitHub Pages URL and lists files from the `media/` folder.
 
-<p>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
-  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-</p>
+### Netlify (or any other host)
+Because the page normally relies on the GitHub API to discover media files, set the `REPO` object:
 
-## 🚀 Selected work
+```js
+const REPO = { owner: "aethertimi-ctrl", repo: "dami-repo", branch: "main" };
+```
 
-A few projects from my creative web-building work:
+Then deploy the repository as a static site (no build command, publish directory = `/`).
 
-| Project | What it is |
-| --- | --- |
-| [iRave / Rave Template](https://github.com/aethertimi-ctrl/rave-template) | Event-focused web experiences and reusable rave website template |
-| [Rave Website](https://github.com/aethertimi-ctrl/rave-website) | A dedicated event website project |
-| [Birthday Website](https://github.com/aethertimi-ctrl/birthday-website) | A personalised birthday web experience |
-| [Wedding Template](https://github.com/aethertimi-ctrl/wedding-template) | A reusable wedding website concept |
-| [A Proposal for Prince](https://github.com/aethertimi-ctrl/a-proposal-for-prince-) | A creative proposal website |
-| [Tiana Birthday](https://github.com/aethertimi-ctrl/Tiana-birthday) | A personalised birthday experience |
+## File structure
 
-## 📊 GitHub at a glance
+```
+.
+├── index.html          # The whole site
+├── media/              # Photos, audio, and videos go here
+│   ├── dami.jpeg
+│   ├── echoix.m4a
+│   └── project.mp4
+└── README.md
+```
 
-<div align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=aethertimi-ctrl&show_icons=true&hide_border=true&theme=tokyonight&rank_icon=github" alt="GitHub stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=aethertimi-ctrl&layout=compact&hide_border=true&theme=tokyonight" alt="Most used languages" />
-</div>
+## Notes
 
-<div align="center">
-  <img src="https://streak-stats.demolab.com?user=aethertimi-ctrl&theme=tokyonight&hide_border=true" alt="GitHub contribution streak" />
-</div>
+- The uploader (`?edit`) needs a GitHub personal access token with contents read/write permission if you want to add files through the page itself.
+- Filenames with spaces are supported.
+- The site is fully client-side and works offline once the files are loaded.
 
-## 🤝 Let's build something memorable
+## Code of Conduct
 
-Have an idea for an event website, landing page or a custom digital experience?
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-- **Email:** [aethertimi@gmail.com](mailto:aethertimi@gmail.com)
-- **X:** [@AetherTimi](https://x.com/AetherTimi)
-- **GitHub:** [@aethertimi-ctrl](https://github.com/aethertimi-ctrl)
-
-<div align="center">
-
-*Design with intention. Build with creativity. Make it memorable.*
-
-</div>
+Made with ♥.
